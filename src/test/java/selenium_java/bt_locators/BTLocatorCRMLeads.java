@@ -20,7 +20,7 @@ public class BTLocatorCRMLeads {
     String urlLeads = "https://crm.anhtester.com/admin/leads";
     String buttonNewLead = "//a[normalize-space()='New Lead']";
     String buttonFilter = "//div[@id='vueApp']/descendant::button";
-    String buttonLeadSummary = "//a[@data-title='Leads Summary']";
+    String iconLeadSummary = "//a[@data-title='Leads Summary']";
     String headerLeadsSummary = "//h4[normalize-space()='Leads Summary']";
     String labelActive = "//span[normalize-space()='Active']";
     String labelActiveNumber = "//span[normalize-space()='Active']/preceding-sibling::span";
@@ -30,9 +30,9 @@ public class BTLocatorCRMLeads {
     String labelCustomerNumber = "//div[@style='display: block;']/descendant::span[normalize-space()='Customer']/preceding-sibling::span";
     String labelLostLeads = "//span[normalize-space()='Lost Leads']";
     String labelLostLeadsNumber = "//div[@style='display: block;']/descendant::span[normalize-space()='Lost Leads']/preceding-sibling::span/descendant::span";
-    String buttonLeadKanban = "//a[@data-title='Switch to Kanban']";
-    String inputSearchLead = "//div[@id='leads_filter']//input[@type='search']";
-    String inputLeadLength = "//div[@id='leads_length']//select[@name='leads_length']";
+    String iconLeadKanban = "//a[@data-title='Switch to Kanban']";
+    String inputSearchLead = "//div[@id='leads_filter']//input[@type='search']";//bắt rộng ra bên ngoài cả icon
+    String selectLeadLength = "//div[@id='leads_length']//select[@name='leads_length']";
     String buttonExport = "//button[normalize-space()='Export']";
     String buttonBulkActions = "//button[normalize-space()='Bulk Actions']";
     String buttonReload = "//button[@title='Reload']";
@@ -40,7 +40,7 @@ public class BTLocatorCRMLeads {
     //header
     String rowHead = "//tr[@role='row']";
     String inputCheckbox = "//input[@id='mass_select_all']";
-    String labelSTT = "//th[@id='th-number']";
+    String labelSTT = "//th[@id='th-number']";//bắt thêm cả thông tin của bảng để tránh trùng tên với bảng khác
     String labelName = "//th[@id='th-name']";
     String labelCompany = "//th[@id='th-company']";
     String labelEmail = "//th[@id='th-email']";
@@ -54,7 +54,7 @@ public class BTLocatorCRMLeads {
     String labelCreated = "//th[@id='th-date-created']";
     //body 1
     String rowBody = "//tr[@id='lead_246']";
-    String iconView = "//tr[@id='lead_246']//a[normalize-space()='View']";
+    String iconView = "//tr[@id='lead_246']//a[normalize-space()='View']";//dùng hàm để áp dụng cho các bản ghi khác
     String iconEdit = "//tr[@id='lead_246']//a[normalize-space()='Edit']";
     String iconDelete = "//tr[@id='lead_246']//a[normalize-space()='Delete']";
     String labelRecordCount = "//div[@id='leads_info']";
@@ -63,10 +63,10 @@ public class BTLocatorCRMLeads {
     String buttonNext = "//li[@id='leads_next']//a[text()='Next']";
     //locator for Add New Lead
     String headAddNewLead = "//h4[normalize-space()='Add new lead']";
-    String inputStatus = "//input[@id='new_status_name']";
+    String dropdownStatus = "//input[@id='new_status_name']";
     String inputSearchStatus = "//button[@data-id='status']/following-sibling::div/descendant::input";
-    String inputSource = "//input[@id='new_source_name']";
-    String inputSearchSource = "//button[@data-id='source']/following-sibling::div/descendant::input";
+    String dropdownSource = "//input[@id='new_source_name']";
+    String inputSearchSource = "//button[@data-id='source']/following-sibling::div/descendant::input";//bát giá trị bên trong dropdown, dùng hàm để truyền giá trị
     String inputSearchAssigned = "//button[@data-id='assigned']/following-sibling::div/descendant::input";
     String labelTag = "//label[@for='tags']";
     String inputTag = "//input[@id='tags']";
