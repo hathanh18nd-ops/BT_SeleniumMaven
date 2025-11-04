@@ -28,11 +28,13 @@ public class BTWebdriverTasks {
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys("1000");
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("10-11-2025", Keys.ENTER);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("11-11-2025",Keys.ENTER);
+        //driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).clear();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("11-11-2025", Keys.ENTER);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.labelCBBPriority)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxPriority)).click();
+        Thread.sleep(5000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValuePriority)).click();
-        Thread.sleep(20000);
+        Thread.sleep(10000);
         driver.quit();
 
     }

@@ -83,6 +83,9 @@ public class BTLocatorCRMTasks {
     public static String inputHourlyRate = "//input[@id='hourly_rate']";
     public static String inputStartDate = "//input[@id='startdate']";
     public static String inputDueDate = "//input[@id='duedate']";
+    public static String iconDueDate = "//input[@id='duedate']/following-sibling::div";
+//    public static String valueDueDate = "//input[@id='duedate']/following-sibling::div";
+    public static String labelCBBPriority = "//label[@for='priority' and normalize-space()='Priority']";
     public static String comboboxPriority = "//button[@data-id='priority']";
     public static String clickValuePriority = "//button[@data-id='priority']/following-sibling::div//span[normalize-space()='High']";
     public static String comboboxRepeatEvery = "//button[@data-id='repeat_every']";
