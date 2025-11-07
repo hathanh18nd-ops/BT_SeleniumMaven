@@ -25,18 +25,18 @@ public class BTWebdriverTasks {
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonNewTask)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.checkboxPublic)).click();
-        //driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys("Test thêm mới Task 001");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys("Test thêm mới Task 002");
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys("1000");
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("10-11-2025", Keys.ENTER);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("10-11-2025");
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("11-11-2025", Keys.ENTER);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("11-11-2025");
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelCBBPriority)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxPriority)).click();
@@ -46,13 +46,21 @@ public class BTWebdriverTasks {
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRepeatEvery)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRelatedTo)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedTo)).click();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRelatedToCustomer)).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputRelatedToCustomer)).sendKeys("pnj");
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedToCustomer)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxAssignees)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueAssignees)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxFollowers)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueFollowers)).click();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).click();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         //driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).sendKeys("Test thêm mới Task 001 bằng Selenium WebDriver");
-        Thread.sleep(10000);
-        //driver.quit();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)).click();
+        Thread.sleep(2000);
+        driver.quit();
 
     }
 }

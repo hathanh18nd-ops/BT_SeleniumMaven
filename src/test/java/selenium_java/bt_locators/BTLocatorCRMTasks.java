@@ -92,14 +92,20 @@ public class BTLocatorCRMTasks {
     public static String clickValueRepeatEvery = "//button[@data-id='repeat_every']/following-sibling::div//span[normalize-space()='1 Month']/parent::a";
     public static String comboboxRelatedTo = "//button[@data-id='rel_type']";
     public static String clickValueRelatedTo = "//button[@data-id='rel_type']/following-sibling::div//span[normalize-space()='Customer']/parent::a";
+    //sau khi chọn Related To là Customer
+    public static String comboboxRelatedToCustomer = "//button[@data-id='rel_id']";
+    public static String inputRelatedToCustomer = "//button[@data-id='rel_id']/following-sibling::div/descendant::input";
+    //public static String inputRelatedToCustomer = "//button[@data-id='rel_id']/following-sibling::div//input";
+    public static String clickValueRelatedToCustomer = "//button[@data-id='rel_id']/following-sibling::div/descendant::span[text()='PNJ']";
     public static String comboboxAssignees = "//button[@data-id='assignees']";
     public static String clickValueAssignees = "//button[@data-id='assignees']/following-sibling::div//span[normalize-space()='Admin Anh Tester']/parent::a";
     public static String inputAssignees = "//button[@data-id='assignees']/following-sibling::div/descendant::input";
     public static String comboboxFollowers = "//button[@data-id='followers[]']";
     public static String clickValueFollowers = "//button[@data-id='followers[]']/following-sibling::div//span[normalize-space()='Admin Example']/parent::a";
     public static String inputFollowers = "//button[@data-id='followers[]']/following-sibling::div/descendant::input";
-    public static String multichoiceTags = "//label[@for='tags']/following-sibling::ul/descendant::input";
-    //public static String multichoiceTags = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/ancestor::ul";
+    public static String inputTags = "//label[@for='tags']/following-sibling::ul/descendant::input";
+    public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/ancestor::ul";
+    public static String clickValueTag = "//div[@id='inputTagsWrapper']//div[normalize-space()='Hapt']";
     public static String valueTags = "//label[@for='tags']/following-sibling::ul/descendant::input//div[normalize-space()='Hapt']";
     //String multichoiceTags = "//input[@id='tags']/following-sibling::ul/descendant::input";
     public static String inputTaskDescription = "//textarea[@id='description']";
