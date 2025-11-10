@@ -6,22 +6,29 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import selenium_java.bt_locators.BTLocatorCRMLeads;
-import java.time.Duration;
+import selenium_java.bt_locators.BTLocatorCRMTasks;
 
-public class BTWebelementLeads {
-    public static void main(String[] args) throws InterruptedException {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://crm.anhtester.com/admin/authentication");
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class BTWebelementLeads extends BaseTest {
+    public static void loginCRM() throws InterruptedException {
+        driver.get(BTLocatorCRMTasks.url);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmail)).sendKeys("admin@example.com");
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPassword)).submit();//thay cho click login
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonLogin)).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonLogin)).click();
+        Thread.sleep(1000);
+    }
+
+    public static void openLeadsSummary() throws InterruptedException {
+        driver.findElement(By.xpath(BTLocatorCRMLeads.menuTasks)).click();
+        Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonNewLead)).click();
+        Thread.sleep(1000);
+    }
+
+    public static void addNewLead(String leadName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownStatus)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueStatus)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownSource)).click();
@@ -31,8 +38,7 @@ public class BTWebelementLeads {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys("Hapt", Keys.ENTER);
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys("Hapt Test 001");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(leadName);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).sendKeys("Đại Linh");
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).sendKeys("NV");
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputCity)).sendKeys("Hà Nội");
@@ -56,8 +62,17 @@ public class BTWebelementLeads {
         boolean checkCheckboxPublics = driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).isSelected();
         System.out.println("Checkbox Remember Me is selected after: " + checkCheckboxPublics);
 //        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
-
         Thread.sleep(2000);
-        driver.quit();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        createDriver();
+        loginCRM();
+        openLeadsSummary();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = now.format(formatter);
+        addNewLead("Hapt " + formattedDateTime);
+        closeDriver();
     }
 }
