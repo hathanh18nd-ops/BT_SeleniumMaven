@@ -14,6 +14,7 @@ public class BTLocatorCRMTasks {
     public static String alerErrorEmailRequired = "//div[normalize-space()='The Email Address field is required.']";
     public static String alerErrorPasswordRequired = "//div[normalize-space()='The Password field is required.']";
     //locator for Menu
+    public static String menuDashboard = "//ul[@id='side-menu']//span[@class='menu-text' and normalize-space()='Dashboard']";
     public static String menuTasks = "//span[@class='menu-text' and normalize-space()='Tasks']";
     //String menuLeads = "//span[@class='menu-text' and normalize-space()='Leads']";
     //locator for Leads Page

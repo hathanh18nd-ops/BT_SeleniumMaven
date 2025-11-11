@@ -8,9 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import selenium_java.bt_locators.BTLocatorCRMLeads;
 import selenium_java.bt_locators.BTLocatorCRMTasks;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class BTWebelementLeads extends BaseTest {
     public static void loginCRM() throws InterruptedException {
@@ -19,6 +21,12 @@ public class BTWebelementLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPassword)).sendKeys("123456");
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonLogin)).click();
         Thread.sleep(1000);
+        boolean check = driver.findElement(By.xpath(BTLocatorCRMLeads.menuDashboard)).isDisplayed();
+        if (check) {
+            System.out.println("Đăng nhập CRM thành công!");
+        } else {
+            System.out.println("FAILED!!! Đăng nhập không thành công!");
+        }
     }
 
     public static void openLeadsSummary() throws InterruptedException {

@@ -18,6 +18,12 @@ public class BTWebdriverTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputPassword)).sendKeys("123456");
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonLogin)).click();
         Thread.sleep(1000);
+        boolean check = driver.findElement(By.xpath(BTLocatorCRMTasks.menuDashboard)).isDisplayed();
+        if (check) {
+            System.out.println("Đăng nhập CRM thành công!");
+        } else {
+            System.out.println("FAILED!!! Đăng nhập không thành công!");
+        }
     }
 
     public static void openTaskSummary() throws InterruptedException {
