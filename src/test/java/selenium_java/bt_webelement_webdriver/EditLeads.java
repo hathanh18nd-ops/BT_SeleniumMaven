@@ -34,6 +34,7 @@ public class EditLeads extends BaseTest {
         Thread.sleep(2000);
     }
     public static void editLead() throws InterruptedException {
+        String getLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume))).perform();
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconEdit)).click();
@@ -46,40 +47,55 @@ public class EditLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueSource)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueAssigned)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
 //        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys("Hapt", Keys.ENTER);
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(leadName);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).sendKeys("Đại Linh");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).sendKeys("NV");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCity)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputCity)).sendKeys("Hà Nội");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmailAddress)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmailAddress)).sendKeys(email);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputState)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputState)).sendKeys("Cái Bang");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputWebsite)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputWebsite)).sendKeys("https://crm.anhtester.com/admin/leads");
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownCountry)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCountry)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputCountry)).sendKeys("Vietnam");
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueCountry)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPhone)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPhone)).sendKeys("0818268331");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputZipCode)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputZipCode)).sendKeys("100000");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputLeadValue)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputLeadValue)).sendKeys("200");
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownDefaultLanguage)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDefaultLanguage)).sendKeys("Vietnamese");
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueDefaultLanguage)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCompany)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputCompany)).sendKeys("PNJ");
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).sendKeys("hapt test thêm edit lead");
-        driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.editbuttonSave)).click();
         Thread.sleep(2000);
-//        driver.findElement(By.xpath("//div[@id='lead-modal']//button[@class='close']")).click();//đóng popup sau khi thêm mới
+        driver.findElement(By.xpath("//div[@id='lead-modal']//button[@class='close']")).click();//đóng popup sau khi thêm mới
 
     }
     public static void checkResults(String leadName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(leadName);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(leadName);//Hapts 20251112235142
         Thread.sleep(2000);
         String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
-        System.out.println("First row colume lead name: " + firsRowColume);
+        System.out.println("Cập nhật thành công thành lead name: " + firsRowColume);
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -89,10 +105,11 @@ public class EditLeads extends BaseTest {
         createDriver();
         loginCRM();
         openfunction();
-        search("hapt@");
+        search("hapt t");
         editLead();
         editValue("Hapts " + formattedDateTime, "hapts"+ formattedDateTime +"@gmail.com");
-//        checkResults("Hapt " + formattedDateTime);
-//        closeDriver();
+        checkResults("Hapts " + formattedDateTime);
+//        checkResults("Hapts 20251112235142");
+        closeDriver();
     }
 }

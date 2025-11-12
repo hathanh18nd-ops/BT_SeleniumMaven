@@ -80,10 +80,11 @@ public class BTLocatorCRMLeads {
     public static String inputSearchAssigned = "//button[@data-id='assigned']/following-sibling::div/descendant::input";
     public static String clickValueAssigned = "//a[contains(@id,'bs-select') and normalize-space()='Admin Example']";
     public static String labelTag = "//label[@for='tags']";
-    //public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/parent::li/parent::ul";
-    public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/ancestor::ul";
+    public static String deleteTag = "//div[@id='inputTagsWrapper']//span[@class='text-icon']";
+    public static String dropdownTag = "//div[@id='inputTagsWrapper']/ul/li/input";
+//    public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/ancestor::ul";
     public static String inputTag = "//div[@id='inputTagsWrapper']/ul/li/input";
-    public static String clickValueTag = "//div[@id='inputTagsWrapper']//div[normalize-space()='hieu']";
+    public static String clickValueTag = "//div[@id='inputTagsWrapper']//div[normalize-space()='Hapt']";
 
     //public static String inputTag = "//input[@id='tags']";
     public static String inputName = "//form[@id='lead_form']//input[@id='name']";
@@ -108,4 +109,5 @@ public class BTLocatorCRMLeads {
     public static String checkboxContactedToday = "//input[@id='contacted_today']";
     public static String buttonClose = "//form[@id='lead_form']/div[2]/button[normalize-space()='Close']";
     public static String buttonSave = "//form[@id='lead_form']/div[2]/button[normalize-space()='Save']";
+    public static String editbuttonSave = "//button[@id='lead-form-submit']";
 }
