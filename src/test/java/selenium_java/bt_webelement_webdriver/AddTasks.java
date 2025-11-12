@@ -1,17 +1,12 @@
 package selenium_java.bt_webelement_webdriver;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import selenium_java.bt_locators.BTLocatorCRMLeads;
 import selenium_java.bt_locators.BTLocatorCRMTasks;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class BTWebdriverTasks extends BaseTest {
+public class AddTasks extends BaseTest {
     public static void loginCRM() throws InterruptedException {
         driver.get(BTLocatorCRMTasks.url);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputEmail)).sendKeys("admin@example.com");
@@ -29,11 +24,11 @@ public class BTWebdriverTasks extends BaseTest {
     public static void openTaskSummary() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.menuTasks)).click();
         Thread.sleep(500);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.buttonNewTask)).click();
-        Thread.sleep(1000);
     }
 
     public static void addNewTask(String subjectName) throws InterruptedException {
+        driver.findElement(By.xpath(BTLocatorCRMTasks.buttonNewTask)).click();
+        Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.checkboxPublic)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys(subjectName);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();

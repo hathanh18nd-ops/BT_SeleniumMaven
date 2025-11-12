@@ -55,9 +55,10 @@ public class BTLocatorCRMLeads {
     public static String labelCreated = "//table[@id='leads']//th[@id='th-date-created']";
     //body 1
     public static String rowBody = "//tr[@id='lead_246']";
-    public static String iconView = "//tr[@id='lead_246']//a[normalize-space()='View']";//dùng hàm để áp dụng cho các bản ghi khác
-    public static String iconEdit = "//tr[@id='lead_246']//a[normalize-space()='Edit']";
-    public static String iconDelete = "//tr[@id='lead_246']//a[normalize-space()='Delete']";
+    public static String valueRowColume = "//table[@id='leads']//tr[1]//td[3]";
+    public static String iconView = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='View']";//dùng hàm để áp dụng cho các bản ghi khác
+    public static String iconEdit = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='Edit']";
+    public static String iconDelete = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='Delete']";
     public static String labelRecordCount = "//div[@id='leads_info']";
     public static String buttonPrevious = "//li[@id='leads_previous']//a[normalize-space()='Previous']";
     public static String buttonNumber = "//li[@id='leads_previous']/following-sibling::li/a";
@@ -81,7 +82,7 @@ public class BTLocatorCRMLeads {
     public static String labelTag = "//label[@for='tags']";
     //public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/parent::li/parent::ul";
     public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/ancestor::ul";
-    public static String inputTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']";
+    public static String inputTag = "//div[@id='inputTagsWrapper']/ul/li/input";
     public static String clickValueTag = "//div[@id='inputTagsWrapper']//div[normalize-space()='hieu']";
 
     //public static String inputTag = "//input[@id='tags']";
