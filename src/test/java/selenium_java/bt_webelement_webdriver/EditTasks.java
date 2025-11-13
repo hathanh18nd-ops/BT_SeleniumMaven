@@ -1,6 +1,8 @@
 package selenium_java.bt_webelement_webdriver;
 
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import selenium_java.bt_locators.BTLocatorCRMLeads;
@@ -9,7 +11,7 @@ import selenium_java.bt_locators.BTLocatorCRMTasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class AddTasks extends BaseTest {
+public class EditTasks extends BaseTest {
     @Test(priority = 1)
     public void loginCRM() throws InterruptedException {
         driver.get(BTLocatorCRMTasks.url);
@@ -30,23 +32,37 @@ public class AddTasks extends BaseTest {
         Thread.sleep(500);
     }
     @Test(priority = 3)
-    @Parameters(value = {"subjectName"})
-    public void addNewTask(String subjectName) throws InterruptedException {
-        driver.findElement(By.xpath(BTLocatorCRMTasks.buttonNewTask)).click();
+    @Parameters(value = {"searchName"})
+    public void search(String searchName) throws InterruptedException {
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).clear();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(searchName);
         Thread.sleep(1000);
+    }
+    @Test(priority = 4)
+    public void editTask() throws InterruptedException {
+        String getSubjectName = driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnName)).getText();
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnName))).perform();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.iconEdit)).click();
+        Thread.sleep(2000);
+    }
+    @Test(priority = 5)
+    @Parameters(value = {"subjectName"})
+    public void editValue(String subjectName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.checkboxPublic)).click();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys(subjectName);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys("1000");
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("10-11-2025");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("15-11-2025");
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("11-11-2025");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("17-11-2025");
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelCBBPriority)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxPriority)).click();
@@ -61,26 +77,32 @@ public class AddTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputRelatedToCustomer)).sendKeys("pnj");
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedToCustomer)).click();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxAssignees)).click();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueAssignees)).click();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxFollowers)).click();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueFollowers)).click();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxAssignees)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueAssignees)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxFollowers)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueFollowers)).click();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.deleteTag)).click();
+        Thread.sleep(500);
+//        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).click();
+//        Thread.sleep(500);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).sendKeys("hapt");
+        Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.closepopupDetailAddTask)).click();
+
     }
-    @Test(priority = 4)
+    @Test(priority = 6)
     @Parameters(value = {"subjectName"})
     public void checkResults(String subjectName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.menuTasks)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(subjectName);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(subjectName);//Hapts 20251112235142
         Thread.sleep(2000);
-        String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnNameSubject)).getText();//chỉ láy text của ô Subject
-        System.out.println("First row colume lead name: " + firsRowColume);
+        String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnNameSubject)).getText();
+        System.out.println("Cập nhật thành công thành lead name: " + firsRowColume);
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -90,9 +112,11 @@ public class AddTasks extends BaseTest {
 //        createDriver();
 //        loginCRM();
 //        openfunction();
-//        addNewTask("Task Hapt " + formattedDateTime);
-//        checkResults("Task Hapt " + formattedDateTime);
-//        checkResults("Task Hapt 20251113104941");
+//        search("Task Hapt1");
+//        editTask();
+//        editValue("Task Hapts " + formattedDateTime);
+//        checkResults("Task Hapts " + formattedDateTime);
+//        checkResults("Hapts 20251112235142");
 //        closeDriver();
     }
 }

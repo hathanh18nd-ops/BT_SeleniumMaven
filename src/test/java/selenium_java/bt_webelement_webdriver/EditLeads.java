@@ -4,13 +4,16 @@ package selenium_java.bt_webelement_webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import selenium_java.bt_locators.BTLocatorCRMLeads;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class EditLeads extends BaseTest {
-    public static void loginCRM() throws InterruptedException {
+    @Test(priority = 1)
+    public void loginCRM() throws InterruptedException {
         driver.get(BTLocatorCRMLeads.url);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmail)).sendKeys("admin@example.com");
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPassword)).sendKeys("123456");
@@ -23,24 +26,29 @@ public class EditLeads extends BaseTest {
             System.out.println("Đăng nhập không thành công!");
         }
     }
-
-    public static void openfunction() throws InterruptedException {
+    @Test(priority = 2)
+    public void openfunction() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         Thread.sleep(500);
     }
-    public static void search(String leadName) throws InterruptedException {
+    @Test(priority = 3)
+    @Parameters(value = {"searchName"})
+    public void search(String searchName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(leadName);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(searchName);
         Thread.sleep(2000);
     }
-    public static void editLead() throws InterruptedException {
-        String getLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
+    @Test(priority = 4)
+    public void editLead() throws InterruptedException {
+//        String getLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume))).perform();
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconEdit)).click();
         Thread.sleep(1000);
     }
-    public static void editValue(String leadName, String email) throws InterruptedException {
+    @Test(priority = 5)
+    @Parameters(value = {"leadName", "email"})
+    public void editValue(String leadName, String email) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownStatus)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueStatus)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownSource)).click();
@@ -48,10 +56,11 @@ public class EditLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
 //        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys("Hapt", Keys.ENTER);
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.labelTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(leadName);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).clear();
@@ -89,7 +98,9 @@ public class EditLeads extends BaseTest {
         driver.findElement(By.xpath("//div[@id='lead-modal']//button[@class='close']")).click();//đóng popup sau khi thêm mới
 
     }
-    public static void checkResults(String leadName) throws InterruptedException {
+    @Test(priority = 6)
+    @Parameters(value = {"leadName"})
+    public void checkResults(String leadName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(leadName);//Hapts 20251112235142
@@ -102,14 +113,14 @@ public class EditLeads extends BaseTest {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String formattedDateTime = now.format(formatter);
-        createDriver();
-        loginCRM();
-        openfunction();
-        search("hapt t");
-        editLead();
-        editValue("Hapts " + formattedDateTime, "hapts"+ formattedDateTime +"@gmail.com");
-        checkResults("Hapts " + formattedDateTime);
+//        createDriver();
+//        loginCRM();
+//        openfunction();
+//        search("hapt t");
+//        editLead();
+//        editValue("Hapts " + formattedDateTime, "hapts"+ formattedDateTime +"@gmail.com");
+//        checkResults("Hapts " + formattedDateTime);
 //        checkResults("Hapts 20251112235142");
-        closeDriver();
+//        closeDriver();
     }
 }

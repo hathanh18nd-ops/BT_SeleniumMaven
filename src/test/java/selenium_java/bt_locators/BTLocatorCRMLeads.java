@@ -56,6 +56,7 @@ public class BTLocatorCRMLeads {
     //body 1
     public static String rowBody = "//tr[@id='lead_246']";
     public static String valueRowColume = "//table[@id='leads']//tr[1]//td[3]";
+    public static String valueRowColumeSubject = "//table[@id='leads']//tr[1]//td[3]/a[1]";
     public static String iconView = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='View']";//dùng hàm để áp dụng cho các bản ghi khác
     public static String iconEdit = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='Edit']";
     public static String iconDelete = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='Delete']";
@@ -110,4 +111,6 @@ public class BTLocatorCRMLeads {
     public static String buttonClose = "//form[@id='lead_form']/div[2]/button[normalize-space()='Close']";
     public static String buttonSave = "//form[@id='lead_form']/div[2]/button[normalize-space()='Save']";
     public static String editbuttonSave = "//button[@id='lead-form-submit']";
+    //popup thêm mới thành công
+    public static String closepopupDetailAddLead = "//div[@id='lead-modal']//button[@class='close']";
 }

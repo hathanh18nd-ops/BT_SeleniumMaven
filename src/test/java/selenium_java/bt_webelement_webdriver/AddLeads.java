@@ -4,13 +4,16 @@ package selenium_java.bt_webelement_webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import selenium_java.bt_locators.BTLocatorCRMLeads;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AddLeads extends BaseTest {
-    public static void loginCRM() throws InterruptedException {
+    @Test(priority = 1)
+    public void loginCRM() throws InterruptedException {
         driver.get(BTLocatorCRMLeads.url);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmail)).sendKeys("admin@example.com");
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPassword)).sendKeys("123456");
@@ -23,13 +26,14 @@ public class AddLeads extends BaseTest {
             System.out.println("Đăng nhập không thành công!");
         }
     }
-
-    public static void openLeadsSummary() throws InterruptedException {
+    @Test(priority = 2)
+    public void openfunction() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         Thread.sleep(500);
     }
-
-    public static void addNewLead(String leadName, String email) throws InterruptedException {
+    @Test(priority = 3)
+    @Parameters(value = {"leadName", "email"})
+    public void addNewLead(String leadName, String email) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonNewLead)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownStatus)).click();
@@ -40,7 +44,8 @@ public class AddLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys("Hapt", Keys.ENTER);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.labelTag)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(leadName);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).sendKeys("Đại Linh");
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).sendKeys("NV");
@@ -64,13 +69,14 @@ public class AddLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
         boolean checkCheckboxPublics = driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).isSelected();
         System.out.println("Checkbox Remember Me is selected after: " + checkCheckboxPublics);
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
-        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//div[@id='lead-modal']//button[@class='close']")).click();//đóng popup sau khi thêm mới
+        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();//đóng popup sau khi thêm mới
 
     }
-
-    public static void checkResults(String leadName) throws InterruptedException {
+    @Test(priority = 4)
+    @Parameters(value = {"leadName"})
+    public void checkResults(String leadName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(leadName);
@@ -80,14 +86,14 @@ public class AddLeads extends BaseTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        createDriver();
-        loginCRM();
-        openLeadsSummary();
+//        createDriver();
+//        loginCRM();
+//        openfunction();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String formattedDateTime = now.format(formatter);
-        addNewLead("Hapt " + formattedDateTime, "hapt" + formattedDateTime + "@gmail.com");
-        checkResults("Hapt " + formattedDateTime);
-        closeDriver();
+//        addNewLead("Hapt " + formattedDateTime, "hapt" + formattedDateTime + "@gmail.com");
+//        checkResults("Hapt " + formattedDateTime);
+//        closeDriver();
     }
 }

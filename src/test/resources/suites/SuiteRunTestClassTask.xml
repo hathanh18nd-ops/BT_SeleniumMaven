@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SuiteRunByClass" verbose="1">
+
+    <test name="FirstTest">
+
+        <classes>
+
+            <class name="selenium_java.bt_webelement_webdriver.AddTasks">
+                <parameter name="subjectName" value="Task Hapt002"></parameter>
+            </class>
+            <class name="selenium_java.bt_webelement_webdriver.EditTasks">
+                <parameter name="searchName" value="Task Hapt002"></parameter>
+                <parameter name="subjectName" value="Task Hapts002"></parameter>
+
+            </class>
+
+        </classes>
+    </test>
+</suite>

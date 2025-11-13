@@ -66,9 +66,10 @@ public class BTLocatorCRMTasks {
     public static String labelPriority = "//th[text()='Priority']";
     //body
     public static String rowBody = "//table[@id='tasks']//tbody/child::tr[1]";
-    public static String rowBodyColumnName = "//table[@id='tasks']//tbody/child::tr[1]/child::td[3]";
+    public static String rowColumnName = "//table[@id='tasks']//tr[1]/td[3]";
+    public static String rowColumnNameSubject = "//table[@id='tasks']//tr[1]/td[3]/a[1]";
     public static String iconStartTimer = "//table[@id='tasks']//tbody/child::tr[1]/child::td[3]//a[normalize-space()='Start Timer']";
-    public static String iconEdit = "//table[@id='tasks']//tbody/child::tr[1]/child::td[3]//a[normalize-space()='Edit']";
+    public static String iconEdit = "//table[@id='tasks']//tr[1]/td[3]//a[normalize-space()='Edit']";
     public static String iconDelete = "//table[@id='tasks']//tbody/child::tr[1]/child::td[3]//a[normalize-space()='Delete']";
     public static String labelRecordCount = "//div[@id='tasks_info']";
     public static String buttonPrevious = "//li[@id='tasks_previous']/a[normalize-space()='Previous']";
@@ -102,14 +103,18 @@ public class BTLocatorCRMTasks {
     public static String clickValueAssignees = "//button[@data-id='assignees']/following-sibling::div//span[normalize-space()='Admin Anh Tester']/parent::a";
     public static String inputAssignees = "//button[@data-id='assignees']/following-sibling::div/descendant::input";
     public static String comboboxFollowers = "//button[@data-id='followers[]']";
-    public static String clickValueFollowers = "//button[@data-id='followers[]']/following-sibling::div//span[normalize-space()='Admin Example']/parent::a";
+    public static String clickValueFollowers = "//button[@data-id='followers[]']/following-sibling::div//span[normalize-space()='Admin Anh Tester']/parent::a";
     public static String inputFollowers = "//button[@data-id='followers[]']/following-sibling::div/descendant::input";
     public static String inputTags = "//label[@for='tags']/following-sibling::ul/descendant::input";
-    public static String dropdownTag = "//div[@id='inputTagsWrapper']//input[@placeholder='Tag']/ancestor::ul";
+    public static String dropdownTag = "//div[@id='inputTagsWrapper']/ul/li/input";
+    public static String deleteTag = "//div[@id='inputTagsWrapper']//span[@class='text-icon']";
     public static String clickValueTag = "//div[@id='inputTagsWrapper']//div[normalize-space()='Hapt']";
+    public static String labelTag = "//label[@for='tags']";
     public static String valueTags = "//label[@for='tags']/following-sibling::ul/descendant::input//div[normalize-space()='Hapt']";
     //String multichoiceTags = "//input[@id='tags']/following-sibling::ul/descendant::input";
     public static String inputTaskDescription = "//textarea[@id='description']";
     public static String buttonClose = "//form[@id='task-form']//button[normalize-space()='Close']";
     public static String buttonSave = "//form[@id='task-form']//button[normalize-space()='Save']";
+    //popup thêm mới thành công
+    public static String closepopupDetailAddTask = "//div[@id='task-modal']//button[@class='close']";
 }

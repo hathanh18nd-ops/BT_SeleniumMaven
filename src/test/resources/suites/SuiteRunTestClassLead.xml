@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SuiteRunByClass" verbose="1">
+
+    <test name="FirstTest">
+
+        <classes>
+
+            <class name="selenium_java.bt_webelement_webdriver.AddLeads">
+                <parameter name="leadName" value="Hapt001"></parameter>
+                <parameter name="email" value="Hapt001@gmail.com"></parameter>
+            </class>
+            <class name="selenium_java.bt_webelement_webdriver.EditLeads">
+                <parameter name="searchName" value="Hapt001"></parameter>
+                <parameter name="leadName" value="Hapts001"></parameter>
+                <parameter name="email" value="Hapts001@gmail.com"></parameter>
+            </class>
+
+        </classes>
+    </test>
+</suite>
