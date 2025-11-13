@@ -60,10 +60,12 @@ public class BTLocatorCRMLeads {
     public static String iconView = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='View']";//dùng hàm để áp dụng cho các bản ghi khác
     public static String iconEdit = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='Edit']";
     public static String iconDelete = "//table[@id='leads']//tr[1]//td[3]//a[normalize-space()='Delete']";
+    public static String deleteSuccessful = "//span[normalize-space()='Lead deleted']";
     public static String labelRecordCount = "//div[@id='leads_info']";
     public static String buttonPrevious = "//li[@id='leads_previous']//a[normalize-space()='Previous']";
     public static String buttonNumber = "//li[@id='leads_previous']/following-sibling::li/a";
     public static String buttonNext = "//li[@id='leads_next']//a[text()='Next']";
+    public static String valueTable = "//table[@id='leads']//td[text()='No matching records found']";
     //locator for Add New Lead
     public static String headAddNewLead = "//h4[normalize-space()='Add new lead']";
     //add status dropdown
