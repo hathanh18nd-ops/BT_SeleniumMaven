@@ -70,12 +70,14 @@ public class BTLocatorCRMTasks {
     public static String rowColumnNameSubject = "//table[@id='tasks']//tr[1]/td[3]/a[1]";
     public static String iconStartTimer = "//table[@id='tasks']//tbody/child::tr[1]/child::td[3]//a[normalize-space()='Start Timer']";
     public static String iconEdit = "//table[@id='tasks']//tr[1]/td[3]//a[normalize-space()='Edit']";
-    public static String iconDelete = "//table[@id='tasks']//tbody/child::tr[1]/child::td[3]//a[normalize-space()='Delete']";
+    public static String iconDelete = "//table[@id='tasks']//tr[1]/td[3]//a[normalize-space()='Delete']";
+    public static String deleteSuccessful = "//span[@class='alert-title']";
     public static String labelRecordCount = "//div[@id='tasks_info']";
     public static String buttonPrevious = "//li[@id='tasks_previous']/a[normalize-space()='Previous']";
     public static String buttonNumber = "//li[@id='tasks_previous']/following-sibling::li/a";
     public static String buttonNext = "//li[@id='tasks_next']//a[text()='Next']";
     public static String selectNumberPage = "//select[@id='dt-page-jump-tasks']";
+    public static String valueTable = "//table[@id='tasks']//td[text()='No matching records found']";
     //locator for Add New Task
     public static String headAddNewTask = "//h4[normalize-space()='Add new task']";
     public static String checkboxPublic = "//input[@id='task_is_public']";

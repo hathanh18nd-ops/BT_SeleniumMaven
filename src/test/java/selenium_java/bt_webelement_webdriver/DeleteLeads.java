@@ -46,8 +46,9 @@ public class DeleteLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconDelete)).click();
         Alert alert = driver.switchTo().alert();
         alert.accept();
+        Thread.sleep(3000);
         String deleteSuccess = driver.findElement(By.xpath(BTLocatorCRMLeads.deleteSuccessful)).getText();
-        System.out.println(deleteSuccess);
+        System.out.println("Thông báo xóa thành công: "+deleteSuccess);
         Thread.sleep(1000);
     }
 
@@ -63,5 +64,17 @@ public class DeleteLeads extends BaseTest {
         }else {
             System.out.println("Xóa không thành công lead name: " + searchName);
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        DeleteLeads deleteLeads = new DeleteLeads();
+        deleteLeads.createDriver();
+        deleteLeads.loginCRM();
+        deleteLeads.openfunction();
+        deleteLeads.search("Hapt002");
+        deleteLeads.deleteLead();
+        deleteLeads.checkResults("Hapt002");
+        deleteLeads.closeDriver();
+
     }
 }

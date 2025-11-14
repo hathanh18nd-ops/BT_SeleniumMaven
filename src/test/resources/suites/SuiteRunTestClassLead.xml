@@ -6,18 +6,18 @@
 
         <classes>
 
-<!--            <class name="selenium_java.bt_webelement_webdriver.AddLeads">-->
-<!--                <parameter name="leadName" value="Hapt003"></parameter>-->
-<!--                <parameter name="email" value="Hapt003@gmail.com"></parameter>-->
-<!--            </class>-->
+            <class name="selenium_java.bt_webelement_webdriver.AddLeads">
+                <parameter name="leadName" value="Hapt000"></parameter>
+                <parameter name="email" value="Hapt000@gmail.com"></parameter>
+            </class>
 <!--            <class name="selenium_java.bt_webelement_webdriver.EditLeads">-->
 <!--                <parameter name="searchName" value="Hapt001"></parameter>-->
 <!--                <parameter name="leadName" value="Hapts001"></parameter>-->
 <!--                <parameter name="email" value="Hapts001@gmail.com"></parameter>-->
 <!--            </class>-->
-            <class name="selenium_java.bt_webelement_webdriver.DeleteLeads">
-                <parameter name="searchName" value="Hapt002"></parameter>
-            </class>
+<!--            <class name="selenium_java.bt_webelement_webdriver.DeleteLeads">-->
+<!--                <parameter name="searchName" value="Hapt002"></parameter>-->
+<!--            </class>-->
 
         </classes>
     </test>
