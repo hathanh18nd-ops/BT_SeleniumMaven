@@ -15,8 +15,11 @@
 <!--                <parameter name="subjectName" value="Task Hapts002"></parameter>-->
 <!--            </class>-->
 
-            <class name="selenium_java.bt_webelement_webdriver.DeleteTasks">
-                <parameter name="searchName" value="Task Hapts 20251113141232"></parameter>
+<!--            <class name="selenium_java.bt_webelement_webdriver.DeleteTasks">-->
+<!--                <parameter name="searchName" value="Task Hapts 20251113141232"></parameter>-->
+<!--            </class>-->
+            <class name="selenium_java.bt_webelement_webdriver.BTTasks">
+
             </class>
 
         </classes>
