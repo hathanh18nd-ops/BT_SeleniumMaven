@@ -3,51 +3,43 @@ package selenium_java.bt_webelement_webdriver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import selenium_java.bt_locators.BTLocatorCRMTasks;
 import selenium_java.common.BaseTest;
 
 public class BTTasks extends BaseTest {
-    String subjectName = "Task Hapt003";
-    String searchName = "Task Hapt003";
-
     public void openfunction() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.menuTasks)).click();
         Thread.sleep(1000);
         String taskSumary = driver.findElement(By.xpath(BTLocatorCRMTasks.headerTasksSummary)).getText();
-        if (taskSumary.equals("Tasks Summary")) {
-            System.out.println("Mở chức năng Tasks thành công!");
-        } else {
-            System.out.println("Mở chức năng Tasks không thành công!");
-        }
+        Assert.assertEquals(taskSumary, "Tasks Summary", "Tiêu đề trang Tasks không khớp");
+        System.out.println("Trang Tasks hiển thị thành công");
     }
 
     public void openPopupAddNewTask() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonNewTask)).click();
         Thread.sleep(1000);
-        String headerAddLead = driver.findElement(By.xpath(BTLocatorCRMTasks.headAddNewTask)).getText();
-        if (headerAddLead.equals("Add new task")) {
-            System.out.println("Mở popup thêm mới task thành công");
-        } else {
-            System.out.println("Mở popup thêm mới task không thành công");
-        }
+        String headerAddTask = driver.findElement(By.xpath(BTLocatorCRMTasks.headAddNewTask)).getText();
+        Assert.assertEquals(headerAddTask, "Add new task", "Mở popup thêm mới task không thành công");
+        System.out.println("Mở popup thêm mới task thành công");
     }
 
     //add tasks
-    public void addNewTask() throws InterruptedException {
+    public void addNewTask(String subjectName, String hourlyRate, String startDate, String dueDate, String relatedTo) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.checkboxPublic)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys(subjectName);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys("1000");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys(hourlyRate);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("10-11-2025");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys(startDate);
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("11-11-2025");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys(dueDate);
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelCBBPriority)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxPriority)).click();
@@ -59,7 +51,7 @@ public class BTTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedTo)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRelatedToCustomer)).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputRelatedToCustomer)).sendKeys("pnj");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputRelatedToCustomer)).sendKeys(relatedTo);
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedToCustomer)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxAssignees)).click();
@@ -74,32 +66,39 @@ public class BTTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.closepopupDetailAddTask)).click();
     }
 
-    public void checkResults(String textnotification) throws InterruptedException {
+    public void checkResults(String textnotification, String subjectName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.menuTasks)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(subjectName);
         Thread.sleep(2000);
         String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnNameSubject)).getText();
+        String actuaTaskName = driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnNameSubject)).getText();
+        Assert.assertEquals(actuaTaskName, subjectName, "Task thêm mới không thành công");
         System.out.println(textnotification + firsRowColume);
     }
 
     @Test(priority = 1)
     public void testAddNewTask() throws InterruptedException {
+        String subjectName = "Task Hapt003";
+        String hourlyRate = "1000";
+        String startDate = "19-11-2025";
+        String dueDate = "21-11-2025";
+        String relatedTo = "pnj";
         loginCRM();
         openfunction();
         openPopupAddNewTask();
-        addNewTask();
-        checkResults("Thêm mới thành công task name: ");
+        addNewTask(subjectName, hourlyRate, startDate, dueDate, relatedTo);
+        checkResults("Thêm mới thành công task name: ", subjectName);
     }
 
-    public void search() throws InterruptedException {
+    public void search(String subjectName) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(searchName);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(subjectName);
         Thread.sleep(2000);
     }
 
     //edit tasks
-    public void editTask() throws InterruptedException {
+    public void editTask(String subjectName, String hourlyRate, String startDate, String dueDate, String relatedTo, String tag) throws InterruptedException {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnName))).perform();
         driver.findElement(By.xpath(BTLocatorCRMTasks.iconEdit)).click();
@@ -109,16 +108,16 @@ public class BTTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys(subjectName);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys("1000");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys(hourlyRate);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys("15-11-2025");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).sendKeys(startDate);
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).clear();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys("17-11-2025");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputDueDate)).sendKeys(dueDate);
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelCBBPriority)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxPriority)).click();
@@ -130,14 +129,14 @@ public class BTTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedTo)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRelatedToCustomer)).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputRelatedToCustomer)).sendKeys("pnj");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputRelatedToCustomer)).sendKeys(relatedTo);
         Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedToCustomer)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.deleteTag)).click();
         Thread.sleep(500);
 //        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).click();
 //        Thread.sleep(500);
-        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).sendKeys("hapt");
+        driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).sendKeys(tag);
         Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelTag)).click();
@@ -148,15 +147,21 @@ public class BTTasks extends BaseTest {
 
     @Test(priority = 2)
     public void testEditTask() throws InterruptedException {
+        String subjectName = "Task Hapt003";
+        String hourlyRate = "1000";
+        String startDate = "19-11-2025";
+        String dueDate = "21-11-2025";
+        String relatedTo = "pnj";
+        String tag = "Hapt";
         loginCRM();
         openfunction();
-        search();
-        editTask();
-        checkResults("Cập nhật thành công thành lead name: ");
+        search(subjectName);
+        editTask(subjectName, hourlyRate, startDate, dueDate, relatedTo, tag);
+        checkResults("Cập nhật thành công thành lead name: ", subjectName);
     }
 
     //delete tasks
-    public void deleteTask() throws InterruptedException {
+    public void deleteTask(String subjectName) throws InterruptedException {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMTasks.rowColumnName))).perform();
         driver.findElement(By.xpath(BTLocatorCRMTasks.iconDelete)).click();
@@ -168,21 +173,19 @@ public class BTTasks extends BaseTest {
         Thread.sleep(1000);
         //kiểm tra kết quả xóa
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(searchName);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputSearchTask)).sendKeys(subjectName);
         Thread.sleep(2000);
-        String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMTasks.valueTable)).getText();
-        if (firsRowColume.equals("No matching records found")) {
-            System.out.println("Xóa thành công lead name: " + searchName);
-        } else {
-            System.out.println("Xóa không thành công lead name: " + searchName);
-        }
+        String actuaTaskName = driver.findElement(By.xpath(BTLocatorCRMTasks.valueTable)).getText();
+        Assert.assertEquals(actuaTaskName, "No matching records found", "Xóa không thành công Task name: " + subjectName);
+        System.out.println("Xóa thành công Task name: " + subjectName);
     }
 
     @Test(priority = 3)
     public void testDeleteTask() throws InterruptedException {
+        String subjectName = "Task Hapt003";
         loginCRM();
         openfunction();
-        search();
-        deleteTask();
+        search(subjectName);
+        deleteTask(subjectName);
     }
 }

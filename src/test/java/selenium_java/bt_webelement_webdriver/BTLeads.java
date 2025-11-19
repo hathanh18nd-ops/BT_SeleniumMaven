@@ -83,7 +83,6 @@ public class BTLeads extends BaseTest {
         String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
         String actualLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColumeSubject)).getText();
         Assert.assertEquals(actualLeadName, name, "Lead thêm mới không thành công");
-        System.out.println("Thêm mới lead thành công");
         System.out.println(textnotification + firsRowColume);
     }
 
