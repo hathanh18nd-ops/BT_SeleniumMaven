@@ -113,6 +113,7 @@ public class BTLocatorCRMLeads {
     public static String buttonClose = "//form[@id='lead_form']/div[2]/button[normalize-space()='Close']";
     public static String buttonSave = "//form[@id='lead_form']/div[2]/button[normalize-space()='Save']";
     public static String editbuttonSave = "//button[@id='lead-form-submit']";
+    public static String editbuttonEdit = "//div[@id='tab_lead_profile']//a[@data-title='Edit ']";
     //popup thêm mới thành công
     public static String closepopupDetailAddLead = "//div[@id='lead-modal']//button[@class='close']";
 }

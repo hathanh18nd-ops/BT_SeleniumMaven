@@ -117,6 +117,7 @@ public class BTLocatorCRMTasks {
     public static String inputTaskDescription = "//textarea[@id='description']";
     public static String buttonClose = "//form[@id='task-form']//button[normalize-space()='Close']";
     public static String buttonSave = "//form[@id='task-form']//button[normalize-space()='Save']";
+    public static String headerEditTask = "//h4[contains(normalize-space(),'Edit task')]";
     //popup thêm mới thành công
     public static String closepopupDetailAddTask = "//div[@id='task-modal']//button[@class='close']";
 }
