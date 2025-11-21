@@ -140,6 +140,14 @@ public class BTTasks extends BaseTest {
         Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelTag)).click();
+        //đến thẻ iframe mô tả
+        driver.switchTo().frame(driver.findElement(By.xpath(BTLocatorCRMTasks.iframeDescription)));
+        Thread.sleep(1000);
+        System.out.println(driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).getText());
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).clear();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).sendKeys("Hapt cập nhật mô tả task");
+        //thoát thẻ iframe
+        driver.switchTo().parentFrame();
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.closepopupDetailAddTask)).click();
@@ -147,7 +155,7 @@ public class BTTasks extends BaseTest {
 
     @Test(priority = 2)
     public void testEditTask() throws InterruptedException {
-        String subjectName = "Task Hapt003";
+        String subjectName = "Task Hapts001";
         String hourlyRate = "1000";
         String startDate = "19-11-2025";
         String dueDate = "21-11-2025";

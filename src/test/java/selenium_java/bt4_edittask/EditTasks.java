@@ -61,6 +61,14 @@ public class EditTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelTag)).click();
+        //đến thẻ iframe mô tả
+        driver.findElement(By.xpath(BTLocatorCRMTasks.textareaDescription)).click();
+        driver.switchTo().frame(driver.findElement(By.xpath(BTLocatorCRMTasks.iframeDescription)));
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).clear();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).sendKeys("Hapt nhập mô tả task");
+        //thoát thẻ iframe
+        driver.switchTo().parentFrame();
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.closepopupDetailAddTask)).click();
@@ -95,8 +103,12 @@ public class EditTasks extends BaseTest {
     //edit tasks
     public void editTask(String subjectName, String hourlyRate, String startDate, String dueDate, String relatedTo, String tag) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMTasks.checkboxPublic)).click();
+        String subject = driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).getAttribute("value");
+        System.out.println("giá trị Subject trước khi cập nhật"+subject);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys(subjectName);
+        String subjected = driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).getAttribute("value");
+        System.out.println("giá trị Subject sau khi cập nhật"+subjected);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).sendKeys(hourlyRate);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputStartDate)).click();
@@ -130,6 +142,14 @@ public class EditTasks extends BaseTest {
         Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelTag)).click();
+        //đến thẻ iframe mô tả
+        driver.switchTo().frame(driver.findElement(By.xpath(BTLocatorCRMTasks.iframeDescription)));
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).clear();
+        driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).sendKeys("Hapt cập nhật mô tả task");
+        //thoát thẻ iframe
+        driver.switchTo().parentFrame();
+        Thread.sleep(1000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.closepopupDetailAddTask)).click();
@@ -155,7 +175,8 @@ public class EditTasks extends BaseTest {
     }
     @Test()
     public void testEditTask() throws InterruptedException {
-        String subjectName = "Task Hapt003";
+        String subjectName = "Task Hapt002";
+        String subjectNameed = "Task Hapt003";
         String hourlyRate = "1000";
         String startDate = "19-11-2025";
         String dueDate = "21-11-2025";
@@ -167,9 +188,9 @@ public class EditTasks extends BaseTest {
         addNewTask(subjectName, hourlyRate, startDate, dueDate, relatedTo);
         search(subjectName);
         openPopupEditTask();
-        editTask(subjectName, hourlyRate, startDate, dueDate, relatedTo, tag);
-        checkResults("Cập nhật thành công Task name: ", subjectName);
-//        search(subjectName);
-//        deleteTask(subjectName);
+        editTask(subjectNameed, hourlyRate, startDate, dueDate, relatedTo, tag);
+        checkResults("Cập nhật thành công Task name: ", subjectNameed);
+//        search(subjectNameed);
+//        deleteTask(subjectNameed);
     }
 }

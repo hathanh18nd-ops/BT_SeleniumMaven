@@ -114,7 +114,9 @@ public class BTLocatorCRMTasks {
     public static String labelTag = "//label[@for='tags']";
     public static String valueTags = "//label[@for='tags']/following-sibling::ul/descendant::input//div[normalize-space()='Hapt']";
     //String multichoiceTags = "//input[@id='tags']/following-sibling::ul/descendant::input";
-    public static String inputTaskDescription = "//textarea[@id='description']";
+    public static String textareaDescription = "//textarea[@id='description']";
+    public static String iframeDescription = "//iframe[@id='description_ifr']";
+    public static String inputTaskDescription = "//body[@data-id='description']/p";
     public static String buttonClose = "//form[@id='task-form']//button[normalize-space()='Close']";
     public static String buttonSave = "//form[@id='task-form']//button[normalize-space()='Save']";
     public static String headerEditTask = "//h4[contains(normalize-space(),'Edit task')]";
