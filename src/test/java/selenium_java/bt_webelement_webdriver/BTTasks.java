@@ -2,6 +2,7 @@ package selenium_java.bt_webelement_webdriver;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -27,6 +28,7 @@ public class BTTasks extends BaseTest {
 
     //add tasks
     public void addNewTask(String subjectName, String hourlyRate, String startDate, String dueDate, String relatedTo) throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.xpath(BTLocatorCRMTasks.checkboxPublic)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputSubject)).sendKeys(subjectName);
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputHourlyRate)).clear();
@@ -61,6 +63,7 @@ public class BTTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.dropdownTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.labelTag)).click();
+        js.executeScript("arguments[0].scrollIntoView(false);", driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)));
         driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave)).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath(BTLocatorCRMTasks.closepopupDetailAddTask)).click();

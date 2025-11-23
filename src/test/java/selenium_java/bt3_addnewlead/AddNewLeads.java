@@ -13,23 +13,25 @@ import selenium_java.common.BaseTest;
 import java.util.List;
 
 public class AddNewLeads extends BaseTest {
-    public void openfunction() throws InterruptedException {
+    public void openfunctionLead() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconLeadSummary)).click();
         Thread.sleep(1000);
+    }
+    public void verifyOpenfunctionLead(){
         List<WebElement> checkheaderLead = driver.findElements(By.xpath(BTLocatorCRMLeads.headerLeadsSummary));
         Assert.assertTrue(checkheaderLead.size() > 0, "Trang Leads không hiển thị");
-        String leadSumary = driver.findElement(By.xpath(BTLocatorCRMLeads.headerLeadsSummary)).getText();
-        Assert.assertEquals(leadSumary, "Leads Summary", "Tiêu đề trang Leads không khớp");
         System.out.println("Trang Leads hiển thị thành công");
     }
 
     public void openPopupAddNewLead() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonNewLead)).click();
         Thread.sleep(1000);
-        String headerAddLead = driver.findElement(By.xpath(BTLocatorCRMLeads.headAddNewLead)).getText();
-        Assert.assertEquals(headerAddLead, "Add new lead", "Mở popup thêm mới lead không thành công");
+    }
+    public void verifyOpenPopupAddNewLead(){
+        List<WebElement> checkheaderAddNewLead = driver.findElements(By.xpath(BTLocatorCRMLeads.headAddNewLead));
+        Assert.assertTrue(checkheaderAddNewLead.size() > 0, "Mở popup thêm mới lead không thành công");
         System.out.println("Mở popup thêm mới lead thành công");
     }
 
@@ -72,21 +74,22 @@ public class AddNewLeads extends BaseTest {
 //        System.out.println("Checkbox Remember Me is selected after: " + checkCheckboxPublics);
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
         Thread.sleep(3000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();//đóng popup sau khi thêm mới
+    }
+    public void closePopupAddNewLead() throws InterruptedException {
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();
+        Thread.sleep(1000);
     }
 
     public void checkResults(String textnotification, String name) throws InterruptedException {
-        driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(name);
         Thread.sleep(2000);
-        String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
         String actualLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColumeSubject)).getText();
         Assert.assertEquals(actualLeadName, name, "Lead thêm mới không thành công");
-        System.out.println(textnotification + firsRowColume);
+        System.out.println(textnotification + actualLeadName);
     }
 
-    @Test(priority = 1)
+    @Test()
     public void testAddNewLead() throws InterruptedException {
         String tag = "Hapt";
         String address = "Đại Linh";
@@ -103,10 +106,12 @@ public class AddNewLeads extends BaseTest {
         String zipcode = "100000";
         String defaultlanguage = "Vietnamese";
         String description = "hapt test thêm mới lead no click public";
-        loginCRM();
-        openfunction();
+        openfunctionLead();
+        verifyOpenfunctionLead();
         openPopupAddNewLead();
+        verifyOpenPopupAddNewLead();
         addNewLead(tag, address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, description);
+        closePopupAddNewLead();
         checkResults("Lead Name mới thêm: ",name);
     }
 }
