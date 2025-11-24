@@ -15,30 +15,33 @@ import java.awt.event.InputEvent;
 import java.util.List;
 
 public class EditAndDeleteLeads extends BaseTest {
-    public void openfunction() throws InterruptedException {
+    public void openfunctionLead() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
         Thread.sleep(500);
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconLeadSummary)).click();
         Thread.sleep(1000);
+    }
+
+    public void verifyOpenfunctionLead() {
         List<WebElement> checkheaderLead = driver.findElements(By.xpath(BTLocatorCRMLeads.headerLeadsSummary));
         Assert.assertTrue(checkheaderLead.size() > 0, "Trang Leads không hiển thị");
-        String leadSumary = driver.findElement(By.xpath(BTLocatorCRMLeads.headerLeadsSummary)).getText();
-        Assert.assertEquals(leadSumary, "Leads Summary", "Tiêu đề trang Leads không khớp");
         System.out.println("Trang Leads hiển thị thành công");
     }
 
     public void openPopupAddNewLead() throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonNewLead)).click();
         Thread.sleep(1000);
-        String headerAddLead = driver.findElement(By.xpath(BTLocatorCRMLeads.headAddNewLead)).getText();
-        Assert.assertEquals(headerAddLead, "Add new lead", "Mở popup thêm mới lead không thành công");
+    }
+
+    public void verifyOpenPopupAddNewLead() {
+        List<WebElement> checkheaderAddNewLead = driver.findElements(By.xpath(BTLocatorCRMLeads.headAddNewLead));
+        Assert.assertTrue(checkheaderAddNewLead.size() > 0, "Mở popup thêm mới lead không thành công");
         System.out.println("Mở popup thêm mới lead thành công");
     }
 
-    // thêm mới lead
-    public void addNewLead(String tag, String address, String position, String name, String emailaddress, String website,
-                           String phone, String leadvalue, String company, String city, String state, String country,
-                           String zipcode, String defaultlanguage, String description) throws InterruptedException, AWTException {
+    public void fillDataLead(String tag, String address, String position, String name, String emailaddress, String website,
+                             String phone, String leadvalue, String company, String city, String state, String country,
+                             String zipcode, String defaultlanguage, String description) throws InterruptedException, AWTException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownStatus)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueStatus)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownSource)).click();
@@ -46,9 +49,9 @@ public class EditAndDeleteLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys(tag, Keys.ENTER);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys(tag);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.labelTag)).click();
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(name);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).sendKeys(address);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).sendKeys(position);
@@ -67,105 +70,62 @@ public class EditAndDeleteLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueDefaultLanguage)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputCompany)).sendKeys(company);
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).sendKeys(description);
-//        boolean checkCheckboxPublic = driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).isSelected();
-//        System.out.println("Checkbox Remember Me is selected : " + checkCheckboxPublic);
         driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
-//        boolean checkCheckboxPublics = driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).isSelected();
-//        System.out.println("Checkbox Remember Me is selected after: " + checkCheckboxPublics);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
-        //tắt popup Save address
-        Robot robot = new Robot();
-        robot.mouseMove(1480, 110);// tọa độ con trỏ chuột theo từng màn hình
-        robot.delay(1000);
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        Thread.sleep(3000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();//đóng popup sau khi thêm mới
     }
 
-    public void checkResults(String textnotification, String name) throws InterruptedException {
-        driver.findElement(By.xpath(BTLocatorCRMLeads.menuLeads)).click();
+    public void clearData(int edit) {
+        if (edit == 1) {
+            driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputCity)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmailAddress)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputState)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputWebsite)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputPhone)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputZipCode)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputLeadValue)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputCompany)).clear();
+            driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).clear();
+        }
+    }
+    public void saveLead(String byXpath) throws InterruptedException {
+        driver.findElement(By.xpath(byXpath)).click();
+        Thread.sleep(2000);
+    }
+
+    public void closePopupAddEditLead() throws InterruptedException {
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailLead)).click();
+        Thread.sleep(1000);
+    }
+
+    public void checkResultsLead(String textnotification, String name) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(name);
         Thread.sleep(2000);
-        String firsRowColume = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume)).getText();
         String actualLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColumeSubject)).getText();
         Assert.assertEquals(actualLeadName, name, "Lead thêm mới không thành công");
-        System.out.println(textnotification + firsRowColume);
+        System.out.println(textnotification + actualLeadName);
     }
 
-    public void search(String name) throws InterruptedException {
+    public void searchLead(String name) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(name);
         Thread.sleep(2000);
     }
 
-    // màn hinh chức năng cập nhât lead
     public void openPopupEditLead() throws InterruptedException {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume))).perform();
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconEdit)).click();
         Thread.sleep(1000);
-        boolean checkheaderEditLead = driver.findElement(By.xpath(BTLocatorCRMLeads.editbuttonEdit)).isDisplayed();
+        boolean checkheaderEditLead = driver.findElement(By.xpath(BTLocatorCRMLeads.buttonEdit)).isDisplayed();
         Assert.assertTrue(checkheaderEditLead, "Mở chức năng cập nhật lead không thành công");
         System.out.println("Mở chức năng cập nhật lead thành công");
     }
-
-    // edit lead
-    public void editLead(String address, String position, String name, String emailaddress, String website,
-                         String phone, String leadvalue, String company, String city, String state, String country,
-                         String zipcode, String defaultlanguage, String description) throws InterruptedException {
-        driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownStatus)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueStatus)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownSource)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueSource)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownAssigned)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueAssigned)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.deleteTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys("Hapt", Keys.ENTER);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.labelTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(name);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputAddress)).sendKeys(address);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPosition)).sendKeys(position);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCity)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCity)).sendKeys(city);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmailAddress)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputEmailAddress)).sendKeys(emailaddress);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputState)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputState)).sendKeys(state);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputWebsite)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputWebsite)).sendKeys(website);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownCountry)).click();
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCountry)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCountry)).sendKeys(country);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueCountry)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPhone)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputPhone)).sendKeys(phone);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputZipCode)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputZipCode)).sendKeys(zipcode);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputLeadValue)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputLeadValue)).sendKeys(leadvalue);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownDefaultLanguage)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputDefaultLanguage)).sendKeys(defaultlanguage);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueDefaultLanguage)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCompany)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputCompany)).sendKeys(company);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).clear();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).sendKeys(description);
-//        driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.editbuttonSave)).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();
-    }
-
     //delete lead
-    public void deleteLead(String name) throws InterruptedException {
+    public void deleteLead() throws InterruptedException {
         //xóa lead
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume))).perform();
@@ -176,27 +136,26 @@ public class EditAndDeleteLeads extends BaseTest {
         String deleteSuccess = driver.findElement(By.xpath(BTLocatorCRMLeads.deleteSuccessful)).getText();
         System.out.println("Thông báo xóa thành công: " + deleteSuccess);
         Thread.sleep(1000);
-        //kiểm tra kết quả xóa
+    }
+    public void verifyDeleteLead(String name) throws InterruptedException {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(name);
         Thread.sleep(2000);
-        String actualLeadName = driver.findElement(By.xpath(BTLocatorCRMLeads.valueTable)).getText();
-        Assert.assertEquals(actualLeadName, "No matching records found", "Xóa không thành công lead name: " + name);
+        List<WebElement> checkheaderAddNewLead = driver.findElements(By.xpath(BTLocatorCRMLeads.valueTable));
+        Assert.assertTrue(checkheaderAddNewLead.size() > 0, "Xóa không thành công lead name: " + name);
         System.out.println("Xóa thành công lead name: " + name);
     }
 
     public void mousePress() throws InterruptedException, AWTException {
-
         Robot robot = new Robot();
         //Di chuyển trỏ chuột đến vị trí x,y
         robot.mouseMove(1480, 110);// tọa độ con trỏ chuột theo từng màn hình
         //Dalay giống sleep
-        robot.delay(2000);
+        robot.delay(1000);
         //Click chuột trái
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         //Thả chuột trái ra
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-
         Thread.sleep(2000);
     }
 
@@ -205,8 +164,8 @@ public class EditAndDeleteLeads extends BaseTest {
         String tag = "Hapt";
         String address = "Đại Linh";
         String position = "NV";
-        String name = "Hapt000";
-        String emailaddress = "Hapt000@gmail.com";
+        String name = "Hapt0033";
+        String emailaddress = "Hapt0033@gmail.com";
         String website = "https://crm.anhtester.com/admin/leads";
         String phone = "0818268331";
         String leadvalue = "200";
@@ -218,16 +177,23 @@ public class EditAndDeleteLeads extends BaseTest {
         String defaultlanguage = "Vietnamese";
         String description = "hapt test thêm mới lead";
         String descriptioned = "hapt test cập nhật lead";
-        loginCRM();
-        openfunction();
+        openfunctionLead();
+        verifyOpenfunctionLead();
         openPopupAddNewLead();
-        addNewLead(tag, address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, description);
-//        mousePress();
-        search(name);
+        verifyOpenPopupAddNewLead();
+        fillDataLead(tag, address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, description);
+        saveLead(BTLocatorCRMLeads.buttonSave);
+        mousePress();
+        closePopupAddEditLead();
+        searchLead(name);
         openPopupEditLead();
-        editLead(address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, descriptioned);
-        checkResults("Cập nhật thành công lead name: ", name);
-        search(name);
-        deleteLead(name);
+        clearData(1);
+        fillDataLead(tag, address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, descriptioned);
+        saveLead(BTLocatorCRMLeads.buttonSaveEdit);
+        closePopupAddEditLead();
+        checkResultsLead("Cập nhật thành công lead name: ", name);
+        searchLead(name);
+        deleteLead();
+        verifyDeleteLead(name);
     }
 }

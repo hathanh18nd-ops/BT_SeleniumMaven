@@ -81,7 +81,7 @@ public class FullLeadsAndTasks extends BaseTest {
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(3000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();//đóng popup sau khi thêm mới
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailLead)).click();//đóng popup sau khi thêm mới
     }
 
     public void checkResultsLead(String textnotification, String name) throws InterruptedException {
@@ -107,7 +107,7 @@ public class FullLeadsAndTasks extends BaseTest {
         action.moveToElement(driver.findElement(By.xpath(BTLocatorCRMLeads.valueRowColume))).perform();
         driver.findElement(By.xpath(BTLocatorCRMLeads.iconEdit)).click();
         Thread.sleep(1000);
-        boolean checkheaderEditLead = driver.findElement(By.xpath(BTLocatorCRMLeads.editbuttonEdit)).isDisplayed();
+        boolean checkheaderEditLead = driver.findElement(By.xpath(BTLocatorCRMLeads.buttonEdit)).isDisplayed();
         Assert.assertTrue(checkheaderEditLead, "Mở chức năng cập nhật lead không thành công");
         System.out.println("Mở chức năng cập nhật lead thành công");
     }
@@ -160,9 +160,9 @@ public class FullLeadsAndTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).sendKeys(description);
 //        driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.editbuttonSave)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSaveEdit)).click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailLead)).click();
     }
 
     //delete lead

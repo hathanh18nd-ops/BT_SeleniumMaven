@@ -2,7 +2,6 @@ package selenium_java.bt_webelement_webdriver;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -44,7 +43,8 @@ public class BTLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueAssigned)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.dropdownTag)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys(tag, Keys.ENTER);
+        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
+//        driver.findElement(By.xpath(BTLocatorCRMLeads.inputTag)).sendKeys(tag, Keys.ENTER);
         driver.findElement(By.xpath(BTLocatorCRMLeads.labelTag)).click();
 //        driver.findElement(By.xpath(BTLocatorCRMLeads.clickValueTag)).click();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputName)).sendKeys(name);
@@ -72,7 +72,7 @@ public class BTLeads extends BaseTest {
 //        System.out.println("Checkbox Remember Me is selected after: " + checkCheckboxPublics);
         driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSave)).click();
         Thread.sleep(3000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();//đóng popup sau khi thêm mới
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailLead)).click();//đóng popup sau khi thêm mới
     }
 
     public void checkResults(String textnotification, String name) throws InterruptedException {
@@ -103,7 +103,6 @@ public class BTLeads extends BaseTest {
         String zipcode = "100000";
         String defaultlanguage = "Vietnamese";
         String description = "hapt test thêm mới lead no click public";
-        loginCRM();
         openfunction();
         openPopupAddNewLead();
         addNewLead(tag, address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, description);
@@ -170,9 +169,9 @@ public class BTLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputDescription)).sendKeys(description);
 //        driver.findElement(By.xpath(BTLocatorCRMLeads.checkboxPublic)).click();
-        driver.findElement(By.xpath(BTLocatorCRMLeads.editbuttonSave)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.buttonSaveEdit)).click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailLead)).click();
     }
 
     @Test(priority = 2)
@@ -191,7 +190,6 @@ public class BTLeads extends BaseTest {
         String zipcode = "100000";
         String defaultlanguage = "Vietnamese";
         String description = "hapt test thêm mới lead no click public";
-        loginCRM();
         openfunction();
         search(name);
         editLead(address, position, name, emailaddress, website, phone, leadvalue, company, city, state, country, zipcode, defaultlanguage, description);

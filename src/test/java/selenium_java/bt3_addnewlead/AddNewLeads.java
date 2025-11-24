@@ -1,10 +1,8 @@
 package selenium_java.bt3_addnewlead;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import selenium_java.bt_locators.BTLocatorCRMLeads;
@@ -76,7 +74,7 @@ public class AddNewLeads extends BaseTest {
         Thread.sleep(3000);
     }
     public void closePopupAddNewLead() throws InterruptedException {
-        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailAddLead)).click();
+        driver.findElement(By.xpath(BTLocatorCRMLeads.closepopupDetailLead)).click();
         Thread.sleep(1000);
     }
 
