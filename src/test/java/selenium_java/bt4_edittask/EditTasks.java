@@ -182,7 +182,6 @@ public class EditTasks extends BaseTest {
         String dueDate = "21-11-2025";
         String relatedTo = "pnj";
         String tag = "Hapt";
-        loginCRM();
         openfunction();
         openPopupAddNewTask();
         addNewTask(subjectName, hourlyRate, startDate, dueDate, relatedTo);

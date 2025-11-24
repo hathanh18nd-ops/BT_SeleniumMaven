@@ -3,6 +3,7 @@ package selenium_java.bt_webelement_webdriver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -128,6 +129,9 @@ public class BTTasks extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValuePriority)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRepeatEvery)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRepeatEvery)).click();
+        WebElement element = driver.findElement(By.xpath(BTLocatorCRMTasks.buttonSave));
+        //Move to element (di chuyển tới button Save)
+        action.moveToElement(element).perform();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRelatedTo)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.clickValueRelatedTo)).click();
         driver.findElement(By.xpath(BTLocatorCRMTasks.comboboxRelatedToCustomer)).click();
@@ -146,7 +150,6 @@ public class BTTasks extends BaseTest {
         //đến thẻ iframe mô tả
         driver.switchTo().frame(driver.findElement(By.xpath(BTLocatorCRMTasks.iframeDescription)));
         Thread.sleep(1000);
-        System.out.println(driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).getText());
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).clear();
         driver.findElement(By.xpath(BTLocatorCRMTasks.inputTaskDescription)).sendKeys("Hapt cập nhật mô tả task");
         //thoát thẻ iframe
@@ -158,13 +161,12 @@ public class BTTasks extends BaseTest {
 
     @Test(priority = 2)
     public void testEditTask() throws InterruptedException {
-        String subjectName = "Task Hapts001";
+        String subjectName = "Task Hapt003";
         String hourlyRate = "1000";
         String startDate = "19-11-2025";
         String dueDate = "21-11-2025";
         String relatedTo = "pnj";
         String tag = "Hapt";
-        loginCRM();
         openfunction();
         search(subjectName);
         editTask(subjectName, hourlyRate, startDate, dueDate, relatedTo, tag);
