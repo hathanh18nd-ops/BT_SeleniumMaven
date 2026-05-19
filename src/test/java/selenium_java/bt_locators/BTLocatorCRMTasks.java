@@ -95,12 +95,15 @@ public class BTLocatorCRMTasks {
     public static String comboboxRepeatEvery = "//button[@data-id='repeat_every']";
     public static String clickValueRepeatEvery = "//button[@data-id='repeat_every']/following-sibling::div//span[normalize-space()='1 Month']/parent::a";
     public static String comboboxRelatedTo = "//button[@data-id='rel_type']";
-    public static String clickValueRelatedTo = "//button[@data-id='rel_type']/following-sibling::div//span[normalize-space()='Customer']/parent::a";
+    public static String clickValueRelatedToCus = "//button[@data-id='rel_type']/following-sibling::div//span[normalize-space()='Customer']/parent::a";
+    public static String clickValueRelatedToLead = "//button[@data-id='rel_type']/following-sibling::div//span[normalize-space()='Lead']/parent::a";
     //sau khi chọn Related To là Customer
-    public static String comboboxRelatedToCustomer = "//button[@data-id='rel_id']";
-    public static String inputRelatedToCustomer = "//button[@data-id='rel_id']/following-sibling::div/descendant::input";
-    //public static String inputRelatedToCustomer = "//button[@data-id='rel_id']/following-sibling::div//input";
-    public static String clickValueRelatedToCustomer = "//button[@data-id='rel_id']/following-sibling::div/descendant::span[text()='PNJ']";
+    public static String comboboxRTCustomer = "//button[@data-id='rel_id']";
+    public static String inputRTCustomer = "//button[@data-id='rel_id']/following-sibling::div/descendant::input";
+    //public static String inputRTCustomer = "//button[@data-id='rel_id']/following-sibling::div//input";
+    public static String clickValueRTCustomer = "//button[@data-id='rel_id']/following-sibling::div/descendant::span[text()='PNJ']";
+    public static String clickValueRTTh = "//button[@data-id='rel_id']/following-sibling::div/descendant::span[2]";
+    public static String clickValueRTDynamic = "//button[@data-id='rel_id']/following-sibling::div/descendant::span[contains(normalize-space(),'Edit task')]";
     public static String comboboxAssignees = "//button[@data-id='assignees']";
     public static String clickValueAssignees = "//button[@data-id='assignees']/following-sibling::div//span[normalize-space()='Admin Anh Tester']/parent::a";
     public static String inputAssignees = "//button[@data-id='assignees']/following-sibling::div/descendant::input";

@@ -141,8 +141,8 @@ public class EditAndDeleteLeads extends BaseTest {
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).clear();
         driver.findElement(By.xpath(BTLocatorCRMLeads.inputSearchLead)).sendKeys(name);
         Thread.sleep(2000);
-        List<WebElement> checkheaderAddNewLead = driver.findElements(By.xpath(BTLocatorCRMLeads.valueTable));
-        Assert.assertTrue(checkheaderAddNewLead.size() > 0, "Xóa không thành công lead name: " + name);
+        List<WebElement> checkValueDelete = driver.findElements(By.xpath(BTLocatorCRMLeads.valueTable));
+        Assert.assertTrue(checkValueDelete.size() > 0, "Xóa không thành công lead name: " + name);
         System.out.println("Xóa thành công lead name: " + name);
     }
 
